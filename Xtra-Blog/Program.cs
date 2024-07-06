@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using XtraBlog.Data;
 using XtraBlog.Models;
+using XtraBlog.Services.Implementations;
+using XtraBlog.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 {
@@ -27,6 +29,8 @@ var builder = WebApplication.CreateBuilder(args);
         options.Lockout.MaxFailedAccessAttempts = 5;
         options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
     }).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
+
+    builder.Services.AddScoped<IBlogService, BlogManager>();
 }
 
 var app = builder.Build();
