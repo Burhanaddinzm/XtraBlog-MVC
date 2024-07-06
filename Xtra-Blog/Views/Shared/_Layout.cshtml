@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewData["Title"]</title>
+    <style>
+        li:hover img {
+            filter: invert(51%) sepia(69%) saturate(1462%) hue-rotate(140deg) brightness(102%) contrast(101%);
+        }
+    </style>
     <link rel="stylesheet" href="~/fontawesome/css/all.min.css"> <!-- https://fontawesome.com/ -->
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet"> <!-- https://fonts.google.com/ -->
     <link href="~/css/bootstrap.min.css" rel="stylesheet">
@@ -21,28 +26,52 @@
             </div>
             <nav class="tm-nav" id="tm-nav">
                 <ul>
+                    <li class="tm-nav-item">
+                        <a href="login.html" class="tm-nav-link">
+                            <img src="~/img/login.svg"
+                                 alt=""
+                                 style="width: 20px; height: 20px; margin-right: 37px" />
+                            Login
+                        </a>
+                    </li>
+                    <li class="tm-nav-item">
+                        <a href="register.html" class="tm-nav-link">
+                            <img src="~/img/register.svg"
+                                 alt=""
+                                 style="width: 20px; height: 20px; margin-right: 37px" />
+                            Register
+                        </a>
+                    </li>
                     <li class="tm-nav-item @((string)ViewData["Title"] == "Home" ? "active" : "")">
-                        <a asp-action="index" asp-controller="home" class="tm-nav-link">
+                        <a asp-action="index" asp-controller="blog" class="tm-nav-link">
                             <i class="fas fa-home"></i>
-                            Blog Home
+                            Home
                         </a>
                     </li>
-                    <li class="tm-nav-item">
-                        <a href="post.html" class="tm-nav-link">
+                    <li class="tm-nav-item @((string)ViewData["Title"] == "Create Blog" ? "active" : "")">
+                        <a asp-action="create" asp-controller="blog" class="tm-nav-link ">
                             <i class="fas fa-pen"></i>
-                            Single Post
+                            Create Blog
                         </a>
                     </li>
-                    <li class="tm-nav-item">
-                        <a href="about.html" class="tm-nav-link">
+                    <li class="tm-nav-item  @((string)ViewData["Title"] == "About Us" ? "active" : "")">
+                        <a asp-action="index" asp-controller="about" class="tm-nav-link">
                             <i class="fas fa-users"></i>
                             About Xtra
                         </a>
                     </li>
-                    <li class="tm-nav-item">
-                        <a href="contact.html" class="tm-nav-link">
+                    <li class="tm-nav-item @((string)ViewData["Title"] == "Contact Us" ? "active" : "")">
+                        <a asp-action="index" asp-controller="contact" class="tm-nav-link ">
                             <i class="far fa-comments"></i>
                             Contact Us
+                        </a>
+                    </li>
+                    <li class="tm-nav-item">
+                        <a href="logout.html" class="tm-nav-link">
+                            <img src="~/img/logout.svg"
+                                 alt=""
+                                 style="width: 20px; height: 20px; margin-right: 37px" />
+                            Logout
                         </a>
                     </li>
                 </ul>
@@ -68,6 +97,17 @@
     </header>
     <div class="container-fluid">
         <main class="tm-main">
+            <div class="row tm-row">
+                <div class="col-12">
+                    @* Search *@
+                    <form method="GET" class="form-inline tm-mb-80 tm-search-form">
+                        <input class="form-control tm-search-input" name="query" type="text" placeholder="Search..." aria-label="Search">
+                        <button class="tm-search-button" type="submit">
+                            <i class="fas fa-search tm-search-icon" aria-hidden="true"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
             @RenderBody()
             <footer class="row tm-row">
                 <hr class="col-12">

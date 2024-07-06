@@ -1,0 +1,173 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\Burhanaddin\\source\\repos\\Xtra-Blog\\Xtra-Blog\\wwwroot\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Users\\Burhanaddin\\source\\repos\\Xtra-Blog\\Xtra-Blog\\wwwroot\\css\\templatemo-xtra-blog.css",
+      "PackagePath": "staticwebassets\\css\\templatemo-xtra-blog.css"
+    },
+    {
+      "Id": "C:\\Users\\Burhanaddin\\source\\repos\\Xtra-Blog\\Xtra-Blog\\wwwroot\\fontawesome\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\fontawesome\\LICENSE.txt"
+    },
+    {
+      "Id": "C:\\Users\\Burhanaddin\\source\\repos\\Xtra-Blog\\Xtra-Blog\\wwwroot\\fontawesome\\css\\all.min.css",
+      "PackagePath": "staticwebassets\\fontawesome\\css\\all.min.css"
+    },
+    {
+      "Id": "C:\\Users\\Burhanaddin\\source\\repos\\Xtra-Blog\\Xtra-Blog\\wwwroot\\fontawesome\\webfonts\\fa-brands-400.eot",
+      "PackagePath": "staticwebassets\\fontawesome\\webfonts\\fa-brands-400.eot"
+    },
+    {
+      "Id": "C:\\Users\\Burhanaddin\\source\\repos\\Xtra-Blog\\Xtra-Blog\\wwwroot\\fontawesome\\webfonts\\fa-brands-400.svg",
+      "PackagePath": "staticwebassets\\fontawesome\\webfonts\\fa-brands-400.svg"
+    },
+    {
+      "Id": "C:\\Users\\Burhanaddin\\source\\repos\\Xtra-Blog\\Xtra-Blog\\wwwroot\\fontawesome\\webfonts\\fa-brands-400.ttf",
+      "PackagePath": "staticwebassets\\fontawesome\\webfonts\\fa-brands-400.ttf"
+    },
+    {
+      "Id": "C:\\Users\\Burhanaddin\\source\\repos\\Xtra-Blog\\Xtra-Blog\\wwwroot\\fontawesome\\webfonts\\fa-brands-400.woff",
+      "PackagePath": "staticwebassets\\fontawesome\\webfonts\\fa-brands-400.woff"
+    },
+    {
+      "Id": "C:\\Users\\Burhanaddin\\source\\repos\\Xtra-Blog\\Xtra-Blog\\wwwroot\\fontawesome\\webfonts\\fa-brands-400.woff2",
+      "PackagePath": "staticwebassets\\fontawesome\\webfonts\\fa-brands-400.woff2"
+    },
+    {
+      "Id": "C:\\Users\\Burhanaddin\\source\\repos\\Xtra-Blog\\Xtra-Blog\\wwwroot\\fontawesome\\webfonts\\fa-regular-400.eot",
+      "PackagePath": "staticwebassets\\fontawesome\\webfonts\\fa-regular-400.eot"
+    },
+    {
+      "Id": "C:\\Users\\Burhanaddin\\source\\repos\\Xtra-Blog\\Xtra-Blog\\wwwroot\\fontawesome\\webfonts\\fa-regular-400.svg",
+      "PackagePath": "staticwebassets\\fontawesome\\webfonts\\fa-regular-400.svg"
+    },
+    {
+      "Id": "C:\\Users\\Burhanaddin\\source\\repos\\Xtra-Blog\\Xtra-Blog\\wwwroot\\fontawesome\\webfonts\\fa-regular-400.ttf",
+      "PackagePath": "staticwebassets\\fontawesome\\webfonts\\fa-regular-400.ttf"
+    },
+    {
+      "Id": "C:\\Users\\Burhanaddin\\source\\repos\\Xtra-Blog\\Xtra-Blog\\wwwroot\\fontawesome\\webfonts\\fa-regular-400.woff",
+      "PackagePath": "staticwebassets\\fontawesome\\webfonts\\fa-regular-400.woff"
+    },
+    {
+      "Id": "C:\\Users\\Burhanaddin\\source\\repos\\Xtra-Blog\\Xtra-Blog\\wwwroot\\fontawesome\\webfonts\\fa-regular-400.woff2",
+      "PackagePath": "staticwebassets\\fontawesome\\webfonts\\fa-regular-400.woff2"
+    },
+    {
+      "Id": "C:\\Users\\Burhanaddin\\source\\repos\\Xtra-Blog\\Xtra-Blog\\wwwroot\\fontawesome\\webfonts\\fa-solid-900.eot",
+      "PackagePath": "staticwebassets\\fontawesome\\webfonts\\fa-solid-900.eot"
+    },
+    {
+      "Id": "C:\\Users\\Burhanaddin\\source\\repos\\Xtra-Blog\\Xtra-Blog\\wwwroot\\fontawesome\\webfonts\\fa-solid-900.svg",
+      "PackagePath": "staticwebassets\\fontawesome\\webfonts\\fa-solid-900.svg"
+    },
+    {
+      "Id": "C:\\Users\\Burhanaddin\\source\\repos\\Xtra-Blog\\Xtra-Blog\\wwwroot\\fontawesome\\webfonts\\fa-solid-900.ttf",
+      "PackagePath": "staticwebassets\\fontawesome\\webfonts\\fa-solid-900.ttf"
+    },
+    {
+      "Id": "C:\\Users\\Burhanaddin\\source\\repos\\Xtra-Blog\\Xtra-Blog\\wwwroot\\fontawesome\\webfonts\\fa-solid-900.woff",
+      "PackagePath": "staticwebassets\\fontawesome\\webfonts\\fa-solid-900.woff"
+    },
+    {
+      "Id": "C:\\Users\\Burhanaddin\\source\\repos\\Xtra-Blog\\Xtra-Blog\\wwwroot\\fontawesome\\webfonts\\fa-solid-900.woff2",
+      "PackagePath": "staticwebassets\\fontawesome\\webfonts\\fa-solid-900.woff2"
+    },
+    {
+      "Id": "C:\\Users\\Burhanaddin\\source\\repos\\Xtra-Blog\\Xtra-Blog\\wwwroot\\img\\about-01.jpg",
+      "PackagePath": "staticwebassets\\img\\about-01.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Burhanaddin\\source\\repos\\Xtra-Blog\\Xtra-Blog\\wwwroot\\img\\about-02.jpg",
+      "PackagePath": "staticwebassets\\img\\about-02.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Burhanaddin\\source\\repos\\Xtra-Blog\\Xtra-Blog\\wwwroot\\img\\about-03.jpg",
+      "PackagePath": "staticwebassets\\img\\about-03.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Burhanaddin\\source\\repos\\Xtra-Blog\\Xtra-Blog\\wwwroot\\img\\about-04.jpg",
+      "PackagePath": "staticwebassets\\img\\about-04.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Burhanaddin\\source\\repos\\Xtra-Blog\\Xtra-Blog\\wwwroot\\img\\about-05.jpg",
+      "PackagePath": "staticwebassets\\img\\about-05.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Burhanaddin\\source\\repos\\Xtra-Blog\\Xtra-Blog\\wwwroot\\img\\comment-1.jpg",
+      "PackagePath": "staticwebassets\\img\\comment-1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Burhanaddin\\source\\repos\\Xtra-Blog\\Xtra-Blog\\wwwroot\\img\\comment-2.jpg",
+      "PackagePath": "staticwebassets\\img\\comment-2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Burhanaddin\\source\\repos\\Xtra-Blog\\Xtra-Blog\\wwwroot\\img\\img-01.jpg",
+      "PackagePath": "staticwebassets\\img\\img-01.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Burhanaddin\\source\\repos\\Xtra-Blog\\Xtra-Blog\\wwwroot\\img\\img-02.jpg",
+      "PackagePath": "staticwebassets\\img\\img-02.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Burhanaddin\\source\\repos\\Xtra-Blog\\Xtra-Blog\\wwwroot\\img\\img-03.jpg",
+      "PackagePath": "staticwebassets\\img\\img-03.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Burhanaddin\\source\\repos\\Xtra-Blog\\Xtra-Blog\\wwwroot\\img\\img-04.jpg",
+      "PackagePath": "staticwebassets\\img\\img-04.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Burhanaddin\\source\\repos\\Xtra-Blog\\Xtra-Blog\\wwwroot\\img\\img-05.jpg",
+      "PackagePath": "staticwebassets\\img\\img-05.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Burhanaddin\\source\\repos\\Xtra-Blog\\Xtra-Blog\\wwwroot\\img\\img-06.jpg",
+      "PackagePath": "staticwebassets\\img\\img-06.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Burhanaddin\\source\\repos\\Xtra-Blog\\Xtra-Blog\\wwwroot\\img\\login.svg",
+      "PackagePath": "staticwebassets\\img\\login.svg"
+    },
+    {
+      "Id": "C:\\Users\\Burhanaddin\\source\\repos\\Xtra-Blog\\Xtra-Blog\\wwwroot\\img\\logout.svg",
+      "PackagePath": "staticwebassets\\img\\logout.svg"
+    },
+    {
+      "Id": "C:\\Users\\Burhanaddin\\source\\repos\\Xtra-Blog\\Xtra-Blog\\wwwroot\\img\\register.svg",
+      "PackagePath": "staticwebassets\\img\\register.svg"
+    },
+    {
+      "Id": "C:\\Users\\Burhanaddin\\source\\repos\\Xtra-Blog\\Xtra-Blog\\wwwroot\\js\\jquery.min.js",
+      "PackagePath": "staticwebassets\\js\\jquery.min.js"
+    },
+    {
+      "Id": "C:\\Users\\Burhanaddin\\source\\repos\\Xtra-Blog\\Xtra-Blog\\wwwroot\\js\\templatemo-script.js",
+      "PackagePath": "staticwebassets\\js\\templatemo-script.js"
+    },
+    {
+      "Id": "C:\\Users\\Burhanaddin\\source\\repos\\Xtra-Blog\\Xtra-Blog\\wwwroot\\video\\wheat-field.mp4",
+      "PackagePath": "staticwebassets\\video\\wheat-field.mp4"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.XtraBlog.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.XtraBlog.props",
+      "PackagePath": "build\\XtraBlog.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.XtraBlog.props",
+      "PackagePath": "buildMultiTargeting\\XtraBlog.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.XtraBlog.props",
+      "PackagePath": "buildTransitive\\XtraBlog.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

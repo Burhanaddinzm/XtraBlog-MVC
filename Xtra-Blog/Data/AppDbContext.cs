@@ -14,8 +14,8 @@ public class AppDbContext : DbContext
     }
 
     public DbSet<Blog> Blogs => Set<Blog>();
-    public DbSet<Comment> Comments => Set<Comment>();
     public DbSet<Tag> Tags => Set<Tag>();
+    public DbSet<Comment> Comments => Set<Comment>();
     public DbSet<BlogTag> BlogTags => Set<BlogTag>();
 
     public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
@@ -45,7 +45,10 @@ public class AppDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<BaseEntity>().HasQueryFilter(x => !x.IsDeleted);
+        modelBuilder.Entity<Blog>().HasQueryFilter(x => !x.IsDeleted);
+        modelBuilder.Entity<Comment>().HasQueryFilter(x => !x.IsDeleted);
+        modelBuilder.Entity<BlogTag>().HasQueryFilter(x => !x.IsDeleted);
+        modelBuilder.Entity<Tag>().HasQueryFilter(x => !x.IsDeleted);
         base.OnModelCreating(modelBuilder);
     }
 }

@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Create Blog";
+}
+
+<hr class="tm-hr-primary">
+<form method="post" enctype="multipart/form-data">
+    <div style="
+              display: flex;
+              align-items: start;
+              flex-direction: column;
+              margin-bottom: 30px;
+            ">
+        <label for="title" class="tm-color-primary" style="font-size: 20px; cursor: pointer">Blog Title</label>
+        <input class="form-control" id="title" type="text" style="width: 60%" />
+    </div>
+
+    <div style="
+              display: flex;
+              align-items: start;
+              flex-direction: column;
+              margin-bottom: 30px;
+            ">
+        <label for="content" class="tm-color-primary" style="font-size: 20px; cursor: pointer">Blog Content</label>
+        <textarea class="form-control" id="content"
+                  type="text"
+                  style="width: 60%; height: 300px; min-height: 300px; max-height:600px;"></textarea>
+    </div>
+
+    <div style="
+              display: flex;
+              align-items: start;
+              flex-direction: column;
+              margin-bottom: 30px;
+            ">
+        <label for="image" class="tm-color-primary" style="font-size: 20px; cursor: pointer">Blog Image</label>
+        <input id="image" type="file" />
+    </div>
+
+    <button type="submit" class="tm-btn tm-btn-primary tm-btn-small" style="margin-bottom: 30px">
+        Create Blog
+    </button>
+</form>

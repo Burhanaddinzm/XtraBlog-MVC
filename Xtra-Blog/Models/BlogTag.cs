@@ -1,6 +1,8 @@
-﻿namespace XtraBlog.Models;
+﻿using XtraBlog.Models.Common;
 
-public class BlogTag
+namespace XtraBlog.Models;
+
+public class BlogTag : BaseEntity
 {
     public int BlogId { get; set; }
     public Blog Blog { get; set; } = null!;
