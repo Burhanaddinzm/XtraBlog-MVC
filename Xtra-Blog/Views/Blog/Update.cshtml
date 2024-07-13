@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "Update Blog";
+}
+@model UpdateBlogVM
+
+<hr class="tm-hr-primary">
+<div style="margin-bottom:30px">
+    <p style="font-size: 20px;">Current Image</p>
+    <img src="~/img/@Model.ImageUrl" style="width:400px;height:400px;object-fit:cover" />
+</div>
+<form asp-action="create" asp-controller="blog" method="post" enctype="multipart/form-data">
+    <div style="
+              display: flex;
+              align-items: start;
+              flex-direction: column;
+              margin-bottom: 30px;
+            ">
+        <label for="title" class="tm-color-primary" style="font-size: 20px; cursor: pointer">Blog Title</label>
+        <input class="form-control" id="title" asp-for="Title" style="width: 60%" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+
+    <div style="
+              display: flex;
+              align-items: start;
+              flex-direction: column;
+              margin-bottom: 30px;
+            ">
+        <label for="content" class="tm-color-primary" style="font-size: 20px; cursor: pointer">Blog Content</label>
+        <textarea class="form-control" id="content"
+                  asp-for="Content"
+                  style="width: 60%; height: 300px; min-height: 300px; max-height:600px;"></textarea>
+        <span asp-validation-for="Content" class="text-danger"></span>
+    </div>
+
+    <div style="
+              display: flex;
+              align-items: start;
+              flex-direction: column;
+              margin-bottom: 30px;
+            ">
+        <label for="image" class="tm-color-primary" style="font-size: 20px; cursor: pointer">Blog Image</label>
+        <input id="image" asp-for="Image" />
+        <span asp-validation-for="Image" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="tm-btn tm-btn-primary tm-btn-small" style="margin-bottom: 30px">
+        Create Blog
+    </button>
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+</form>

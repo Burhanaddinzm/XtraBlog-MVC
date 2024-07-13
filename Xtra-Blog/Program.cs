@@ -31,6 +31,7 @@ var builder = WebApplication.CreateBuilder(args);
     }).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
 
     builder.Services.AddScoped<IBlogService, BlogManager>();
+    builder.Services.AddScoped<IUserService, UserService>();
 }
 
 var app = builder.Build();

@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Reflection.Metadata;
 using XtraBlog.Data;
 using XtraBlog.Extensions.File;
 using XtraBlog.Models;
@@ -12,19 +12,16 @@ public class BlogManager : IBlogService
 {
     private readonly AppDbContext _context;
     private readonly IWebHostEnvironment _env;
-    private readonly IHttpContextAccessor _accessor;
-    private readonly UserManager<AppUser> _userManager;
+    private readonly IUserService _userService;
 
     public BlogManager(
         AppDbContext context,
         IWebHostEnvironment env,
-        IHttpContextAccessor accessor,
-        UserManager<AppUser> userManager)
+        IUserService userService)
     {
         _context = context;
         _env = env;
-        _accessor = accessor;
-        _userManager = userManager;
+        _userService = userService;
     }
 
     public async Task<List<Blog>> GetAllBlogsAsync()
@@ -34,20 +31,13 @@ public class BlogManager : IBlogService
                                    .ToListAsync();
     }
 
-    public async Task CreateBlogAsync(CreateBlogVM blogVM)
+    public async Task<Blog?> GetBlogAsync(int id)
     {
-        if (_accessor?.HttpContext?.User?.Identity?.Name == null)
-        {
-            throw new Exception("User not found!");
-        }
+        return await _context.Blogs.FindAsync(id);
+    }
 
-        var user = await _userManager.FindByNameAsync(_accessor.HttpContext.User.Identity.Name!);
-
-        if (user == null)
-        {
-            throw new Exception("Error occured while searching for user!");
-        }
-
+    public async Task CreateBlogAsync(CreateBlogVM blogVM, AppUser user)
+    {
         var blog = new Blog
         {
             Title = blogVM.Title,
@@ -63,5 +53,52 @@ public class BlogManager : IBlogService
 
         await _context.Blogs.AddAsync(blog);
         await _context.SaveChangesAsync();
+    }
+
+    public async Task UpdateBlogAsync(UpdateBlogVM blogVM, AppUser user)
+    {
+        var existingBlog = await _context.Blogs.FindAsync(blogVM.Id);
+
+        if (existingBlog == null)
+        {
+            throw new Exception("Blog doesn't exist!");
+        }
+
+        if (existingBlog.User != user)
+        {
+            throw new UnauthorizedAccessException("Only author of the blog can update it!");
+        }
+
+        existingBlog.Title = blogVM.Title;
+        existingBlog.Content = blogVM.Content;
+        if (blogVM.Image != null)
+        {
+            var fileName = await blogVM.Image.SaveFileAsync(_env.WebRootPath, "img");
+            existingBlog.ImageUrl = fileName;
+        }
+
+        _context.Blogs.Update(existingBlog);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task<bool> CheckDuplicateAsync(string blogTitle, int? blogId = null)
+    {
+        Blog? existingBlog;
+
+        if (blogId != null)
+        {
+            existingBlog = await _context.Blogs.FirstOrDefaultAsync(
+                x => x.Title.Trim().ToLower() == blogTitle.Trim().ToLower() &&
+                x.Id != blogId
+                );
+        }
+        else
+        {
+            existingBlog = await _context.Blogs.FirstOrDefaultAsync(
+                x => x.Title.Trim().ToLower() == blogTitle.Trim().ToLower()
+                );
+        }
+
+        return existingBlog != null;
     }
 }

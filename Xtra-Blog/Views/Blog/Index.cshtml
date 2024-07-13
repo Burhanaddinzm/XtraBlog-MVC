@@ -9,9 +9,9 @@
     {
         <article class="col-12 col-md-6 tm-post">
             <hr class="tm-hr-primary">
-            <a href="post.html" class="effect-lily tm-post-link tm-pt-60">
+            <a asp-action="detail" asp-controller="blog" asp-route-id="@blog.Id" class="effect-lily tm-post-link tm-pt-60">
                 <div class="tm-post-link-inner">
-                    <img src="~/img/img-01.jpg" alt="Image" class="img-fluid">
+                    <img src="~/img/@blog.ImageUrl" alt="Image" class="img-fluid">
                 </div>
                 @* Title *@
                 <h2 class="tm-pt-30 tm-color-primary tm-post-title">@blog.Title</h2>
