@@ -1,0 +1,58 @@
+﻿@{
+    ViewData["Title"] = "Register";
+}
+@model RegisterVM
+
+<hr class="tm-hr-primary">
+
+<form asp-action="register" asp-controller="auth" method="post">
+    <div style="
+              display: flex;
+              align-items: start;
+              flex-direction: column;
+              margin-bottom: 30px;
+            ">
+        <label for="username" class="tm-color-primary" style="font-size: 20px; cursor: pointer">Username</label>
+        <input class="form-control" id="username" asp-for="UserName" style="width: 60%" />
+        <span asp-validation-for="UserName" class="text-danger"></span>
+    </div>
+
+    <div style="
+              display: flex;
+              align-items: start;
+              flex-direction: column;
+              margin-bottom: 30px;
+            ">
+        <label for="email" class="tm-color-primary" style="font-size: 20px; cursor: pointer">Email</label>
+        <input class="form-control" id="email" asp-for="Email" style="width: 60%" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div style="
+              display: flex;
+              align-items: start;
+              flex-direction: column;
+              margin-bottom: 30px;
+            ">
+        <label for="password" class="tm-color-primary" style="font-size: 20px; cursor: pointer">Password</label>
+        <input class="form-control" id="password" asp-for="Password" style="width: 60%" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+
+    <div style="
+            display: flex;
+            align-items: start;
+            flex-direction: column;
+            margin-bottom: 30px;
+          ">
+        <label for="conmfirm-password" class="tm-color-primary" style="font-size: 20px; cursor: pointer">Confirm Password</label>
+        <input class="form-control" id="conmfirm-password" asp-for="ConfirmPassword" style="width: 60%" />
+        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+    </div>
+
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <button type="submit" class="tm-btn tm-btn-primary tm-btn-small" style="margin-bottom: 30px">
+        Register
+    </button>
+</form>

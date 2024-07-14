@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "Login";
+}
+@model LoginVM
+
+<hr class="tm-hr-primary">
+
+<form asp-action="login" asp-controller="auth" method="post">
+    <div style="
+              display: flex;
+              align-items: start;
+              flex-direction: column;
+              margin-bottom: 30px;
+            ">
+        <label for="email" class="tm-color-primary" style="font-size: 20px; cursor: pointer">Email</label>
+        <input class="form-control" id="email" asp-for="Email" style="width: 60%" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div style="
+              display: flex;
+              align-items: start;
+              flex-direction: column;
+              margin-bottom: 30px;
+            ">
+        <label for="password" class="tm-color-primary" style="font-size: 20px; cursor: pointer">Password</label>
+        <input class="form-control" id="password" asp-for="Password" style="width: 60%" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+
+    <div style="
+              display: flex;
+              align-items: center;
+              gap:10px;
+              margin-bottom: 30px;
+            ">
+        <label for="remember-me" class="tm-color-primary" style="cursor: pointer; margin-bottom:0">Remember Me</label>
+        <input class="form-control" id="remember-me" asp-for="RememberMe" style="width: 20px;height:20px" />
+    </div>
+
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <button type="submit"
+            class="tm-btn tm-btn-primary tm-btn-small"
+            style="margin-bottom: 30px">
+        Login
+    </button>
+</form>

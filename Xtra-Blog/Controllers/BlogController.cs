@@ -32,7 +32,19 @@ public class BlogController : Controller
     [HttpGet]
     public async Task<IActionResult> Detail(int? id)
     {
-        return View();
+        if (id == null || id <= 0)
+        {
+            return BadRequest("Invalid id!");
+        }
+
+        var blog = await _blogService.GetBlogAsync(id.Value);
+
+        if (blog == null)
+        {
+            return NotFound("Blog not found!");
+        }
+
+        return View(blog);
     }
 
     [HttpGet]
@@ -68,7 +80,7 @@ public class BlogController : Controller
 
         try
         {
-            var user = await _userService.FindUserAsync();
+            var user = await _userService.FindCurrentUserAsync();
             await _blogService.CreateBlogAsync(blogVM, user);
         }
         catch (ArgumentException ex)
@@ -100,7 +112,7 @@ public class BlogController : Controller
 
         try
         {
-            var currentUser = await _userService.FindUserAsync();
+            var currentUser = await _userService.FindCurrentUserAsync();
 
             if (currentUser != blog.User)
             {
@@ -154,7 +166,7 @@ public class BlogController : Controller
 
         try
         {
-            var user = await _userService.FindUserAsync();
+            var user = await _userService.FindCurrentUserAsync();
             await _blogService.UpdateBlogAsync(blogVM, user);
         }
         catch (ArgumentException ex)
@@ -170,6 +182,12 @@ public class BlogController : Controller
             return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
         }
 
+        return RedirectToAction(nameof(Index));
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Delete(int? id)
+    {
         return RedirectToAction(nameof(Index));
     }
 }

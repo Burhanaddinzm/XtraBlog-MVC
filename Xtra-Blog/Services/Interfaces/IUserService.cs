@@ -1,4 +1,6 @@
-﻿using XtraBlog.Models;
+﻿using Microsoft.AspNetCore.Identity;
+using XtraBlog.Models;
+using XtraBlog.ViewModels.Auth;
 
 namespace XtraBlog.Services.Interfaces;
 
@@ -16,5 +18,17 @@ public interface IUserService
     /// <returns><see cref="AppUser"/> of current session.</returns>
     /// <exception cref="ArgumentException"></exception>
     /// <exception cref="Exception"></exception>
-    Task<AppUser> FindUserAsync();
+    Task<AppUser> FindCurrentUserAsync();
+
+    Task<IdentityResult> Create(RegisterVM registerVM);
+
+    /// <summary>
+    /// Checks if user with this username or email already exists.
+    /// </summary>
+    /// <param name="email"></param>
+    /// <param name="username"></param>
+    /// <returns>True if user with given params already exists, otherwise false.</returns>
+    Task<bool> CheckDuplicate(string email, string username);
+
+    Task<(AppUser?, ICollection<string>?)> CheckExistance(string email);
 }

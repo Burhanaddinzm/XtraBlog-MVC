@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@inject IUserService _userService
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,6 +8,10 @@
     <title>@ViewData["Title"]</title>
     <style>
         li:hover img {
+            filter: invert(51%) sepia(69%) saturate(1462%) hue-rotate(140deg) brightness(102%) contrast(101%);
+        }
+
+        li.active img {
             filter: invert(51%) sepia(69%) saturate(1462%) hue-rotate(140deg) brightness(102%) contrast(101%);
         }
     </style>
@@ -26,34 +32,40 @@
             </div>
             <nav class="tm-nav" id="tm-nav">
                 <ul>
-                    <li class="tm-nav-item">
-                        <a href="login.html" class="tm-nav-link">
-                            <img src="~/img/login.svg"
-                                 alt=""
-                                 style="width: 20px; height: 20px; margin-right: 37px" />
-                            Login
-                        </a>
-                    </li>
-                    <li class="tm-nav-item">
-                        <a href="register.html" class="tm-nav-link">
-                            <img src="~/img/register.svg"
-                                 alt=""
-                                 style="width: 20px; height: 20px; margin-right: 37px" />
-                            Register
-                        </a>
-                    </li>
+                    @if (!_userService.CheckLoggedIn())
+                    {
+                        <li class="tm-nav-item @((string)ViewData["Title"] == "Login" ? "active" : "")">
+                            <a asp-action="login" asp-controller="auth" class="tm-nav-link">
+                                <img src="~/img/login.svg"
+                                     alt=""
+                                     style="width: 20px; height: 20px; margin-right: 37px" />
+                                Login
+                            </a>
+                        </li>
+                        <li class="tm-nav-item @((string)ViewData["Title"] == "Register" ? "active" : "")">
+                            <a asp-action="register" asp-controller="auth" class="tm-nav-link">
+                                <img src="~/img/register.svg"
+                                     alt=""
+                                     style="width: 20px; height: 20px; margin-right: 37px" />
+                                Register
+                            </a>
+                        </li>
+                    }
                     <li class="tm-nav-item @((string)ViewData["Title"] == "Home" ? "active" : "")">
                         <a asp-action="index" asp-controller="blog" class="tm-nav-link">
                             <i class="fas fa-home"></i>
                             Home
                         </a>
                     </li>
-                    <li class="tm-nav-item @((string)ViewData["Title"] == "Create Blog" ? "active" : "")">
-                        <a asp-action="create" asp-controller="blog" class="tm-nav-link ">
-                            <i class="fas fa-pen"></i>
-                            Create Blog
-                        </a>
-                    </li>
+                    @if (_userService.CheckLoggedIn())
+                    {
+                        <li class="tm-nav-item @((string)ViewData["Title"] == "Create Blog" ? "active" : "")">
+                            <a asp-action="create" asp-controller="blog" class="tm-nav-link ">
+                                <i class="fas fa-pen"></i>
+                                Create Blog
+                            </a>
+                        </li>
+                    }
                     <li class="tm-nav-item  @((string)ViewData["Title"] == "About Us" ? "active" : "")">
                         <a asp-action="index" asp-controller="about" class="tm-nav-link">
                             <i class="fas fa-users"></i>
@@ -66,14 +78,17 @@
                             Contact Us
                         </a>
                     </li>
-                    <li class="tm-nav-item">
-                        <a href="logout.html" class="tm-nav-link">
-                            <img src="~/img/logout.svg"
-                                 alt=""
-                                 style="width: 20px; height: 20px; margin-right: 37px" />
-                            Logout
-                        </a>
-                    </li>
+                    @if (_userService.CheckLoggedIn())
+                    {
+                        <li class="tm-nav-item">
+                            <a asp-action="logout" asp-controller="auth" class="tm-nav-link">
+                                <img src="~/img/logout.svg"
+                                     alt=""
+                                     style="width: 20px; height: 20px; margin-right: 37px" />
+                                Logout
+                            </a>
+                        </li>
+                    }
                 </ul>
             </nav>
             <div class="tm-mb-65">
