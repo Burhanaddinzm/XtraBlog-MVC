@@ -1,5 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Home";
+    Random random = new Random();
 }
 @model List<Blog>
 
@@ -11,25 +12,39 @@
             <hr class="tm-hr-primary">
             <a asp-action="detail" asp-controller="blog" asp-route-id="@blog.Id" class="effect-lily tm-post-link tm-pt-60">
                 <div class="tm-post-link-inner">
-                    <img src="~/img/@blog.ImageUrl" alt="Image" class="img-fluid">
+                    @if (blog.ImageUrl != null)
+                    {
+                        <img src="~/img/@blog.ImageUrl" alt="Image" class="img-fluid">
+                    }
+                    else
+                    {
+                        <img src="~/img/img-0@(random.Next(1,7)).jpg" alt="Image" class="img-fluid">
+                    }
                 </div>
                 @* Title *@
                 <h2 class="tm-pt-30 tm-color-primary tm-post-title">@blog.Title</h2>
             </a>
             @* Content cut at 200chars*@
             <p class="tm-pt-30">
-                @blog.Content
+                @if (blog.Content.Length >= 200)
+                {
+                    @(blog.Content.Substring(0, 200) + "...")
+                }
+                else
+                {
+                    @(blog.Content)
+                }
             </p>
             <div class="d-flex justify-content-between tm-pt-45">
                 @* Tags *@
                 <span class="tm-color-primary">
                     @foreach (var blogTag in blog.BlogTags)
                     {
-                        @blogTag.Tag.Name.Prepend('#')
+                        @('#' + blogTag.Tag.Name)
                     }
                 </span>
                 @* CreatedAt *@
-                <span class="tm-color-primary">June 24, 2020 @blog.CreatedAt.ToShortDateString()</span>
+                <span class="tm-color-primary">@blog.CreatedAt.DayOfWeek, @blog.CreatedAt.ToShortDateString()</span>
             </div>
             <hr>
             <div class="d-flex justify-content-between">

@@ -5,7 +5,7 @@ namespace XtraBlog.Services.Interfaces;
 
 public interface IBlogService
 {
-    Task<List<Blog>> GetAllBlogsAsync();
+    Task<List<Blog>> GetAllBlogsAsync(string? createdBy = null);
     Task<Blog?> GetBlogAsync(int id);
     Task CreateBlogAsync(CreateBlogVM blogVM, AppUser user);
     Task<bool> CheckDuplicateAsync(string blogTitle, int? blogId = null);

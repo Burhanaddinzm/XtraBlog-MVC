@@ -24,11 +24,13 @@ public class BlogManager : IBlogService
         _userService = userService;
     }
 
-    public async Task<List<Blog>> GetAllBlogsAsync()
+    public async Task<List<Blog>> GetAllBlogsAsync(string? createdBy = null)
     {
-        return await _context.Blogs.Include("BlogTags.Tag")
-                                   .Include("Comments")
-                                   .ToListAsync();
+        var query = _context.Blogs.Include("BlogTags.Tag")
+                                  .Include("Comments");
+        return createdBy != null
+            ? await query.Where(x => x.CreatedBy == createdBy).ToListAsync()
+            : await query.ToListAsync();
     }
 
     public async Task<Blog?> GetBlogAsync(int id)

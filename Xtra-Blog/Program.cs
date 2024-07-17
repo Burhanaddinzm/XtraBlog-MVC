@@ -34,6 +34,7 @@ var builder = WebApplication.CreateBuilder(args);
 
     builder.Services.AddScoped<IBlogService, BlogManager>();
     builder.Services.AddScoped<IUserService, UserService>();
+    builder.Services.AddScoped<ITagService, TagManager>();
 
     builder.Services.AddTransient<IEmailSender, EmailSender>();
 }

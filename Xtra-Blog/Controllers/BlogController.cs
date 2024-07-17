@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using XtraBlog.Extensions.File;
+using XtraBlog.Models;
 using XtraBlog.Services.Interfaces;
 using XtraBlog.ViewModels.Blog;
 
@@ -9,11 +10,16 @@ public class BlogController : Controller
 {
     private readonly IBlogService _blogService;
     private readonly IUserService _userService;
+    private readonly ITagService _tagService;
 
-    public BlogController(IBlogService blogService, IUserService userService)
+    public BlogController(
+        IBlogService blogService,
+        IUserService userService,
+        ITagService tagService)
     {
         _blogService = blogService;
         _userService = userService;
+        _tagService = tagService;
     }
 
     [HttpGet]
@@ -21,12 +27,27 @@ public class BlogController : Controller
     {
         var blogs = await _blogService.GetAllBlogsAsync();
 
-        //if (blogs == null || blogs.Count == 0)
-        //{
-        //    return NotFound();
-        //}
-
         return View(blogs);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> MyBlogs()
+    {
+        try
+        {
+            var user = await _userService.FindCurrentUserAsync();
+            var blogs = await _blogService.GetAllBlogsAsync(user.UserName);
+
+            return View(blogs);
+        }
+        catch (ArgumentException ex)
+        {
+            return BadRequest(ex.Message);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+        }
     }
 
     [HttpGet]
@@ -48,14 +69,17 @@ public class BlogController : Controller
     }
 
     [HttpGet]
-    public IActionResult Create()
+    public async Task<IActionResult> Create()
     {
+        ViewBag.Tags = await _tagService.GetAllTagsAsync();
         return View();
     }
 
     [HttpPost]
     public async Task<IActionResult> Create(CreateBlogVM blogVM)
     {
+        ViewBag.Tags = await _tagService.GetAllTagsAsync();
+
         if (!ModelState.IsValid)
         {
             return View(blogVM);

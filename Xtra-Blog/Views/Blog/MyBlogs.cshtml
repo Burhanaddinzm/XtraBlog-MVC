@@ -1,0 +1,84 @@
+﻿@{
+    ViewData["Title"] = $"{User.Identity.Name}'s Blogs";
+    Random random = new Random();
+}
+@model List<Blog>
+
+<div class="row tm-row">
+    @* 6 posts *@
+    @foreach (var blog in Model)
+    {
+        <article class="col-12 col-md-6 tm-post">
+            <hr class="tm-hr-primary">
+            <a asp-action="detail" asp-controller="blog" asp-route-id="@blog.Id" class="effect-lily tm-post-link tm-pt-60">
+                <div class="tm-post-link-inner">
+                    @if (blog.ImageUrl != null)
+                    {
+                        <img src="~/img/@blog.ImageUrl" alt="Image" class="img-fluid">
+                    }
+                    else
+                    {
+                        <img src="~/img/img-0@(random.Next(1,7)).jpg" alt="Image" class="img-fluid">
+                    }
+                </div>
+                @* Title *@
+                <h2 class="tm-pt-30 tm-color-primary tm-post-title">@blog.Title</h2>
+            </a>
+            @* Content cut at 200chars*@
+            <p class="tm-pt-30">
+                @if (blog.Content.Length >= 200)
+                {
+                    @(blog.Content.Substring(0, 200) + "...")
+                }
+                else
+                {
+                    @(blog.Content)
+                }
+            </p>
+            <div class="d-flex justify-content-between tm-pt-45">
+                @* Tags *@
+                <span class="tm-color-primary">
+                    @foreach (var blogTag in blog.BlogTags)
+                    {
+                        @('#' + blogTag.Tag.Name)
+                    }
+                </span>
+                @* CreatedAt *@
+                <span class="tm-color-primary">@blog.CreatedAt.DayOfWeek, @blog.CreatedAt.ToShortDateString()</span>
+            </div>
+            <hr>
+            <div class="d-flex justify-content-between">
+                @* Comment Count *@
+                <span>@blog.Comments.Count comments</span>
+                @* CreatedBy *@
+                <span>by @blog.CreatedBy</span>
+            </div>
+        </article>
+    }
+</div>
+@* Pagination *@
+<div class="row tm-row tm-mt-100 tm-mb-75">
+    <div class="tm-prev-next-wrapper">
+        <a href="#" onclick="event.preventDefault()" class="mb-2 tm-btn tm-btn-primary tm-prev-next disabled tm-mr-20">Prev</a>
+        <a href="#" class="mb-2 tm-btn tm-btn-primary tm-prev-next">Next</a>
+    </div>
+    <div class="tm-paging-wrapper">
+        <span class="d-inline-block mr-3">Page</span>
+        <nav class="tm-paging-nav d-inline-block">
+            <ul>
+                <li class="tm-paging-item active">
+                    <a href="#" class="mb-2 tm-btn tm-paging-link">1</a>
+                </li>
+                <li class="tm-paging-item">
+                    <a href="#" class="mb-2 tm-btn tm-paging-link">2</a>
+                </li>
+                <li class="tm-paging-item">
+                    <a href="#" class="mb-2 tm-btn tm-paging-link">3</a>
+                </li>
+                <li class="tm-paging-item">
+                    <a href="#" class="mb-2 tm-btn tm-paging-link">4</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>

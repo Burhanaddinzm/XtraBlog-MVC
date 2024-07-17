@@ -1,11 +1,15 @@
-﻿@inject IUserService _userService
+﻿@{
+    string? title = (string)ViewData["Title"];
+    var isMyBlogs = title.Contains($"{User.Identity.Name}'s Blogs");
+}
+@inject IUserService _userService
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewData["Title"]</title>
+    <title>@title</title>
     <style>
         li:hover img {
             filter: invert(51%) sepia(69%) saturate(1462%) hue-rotate(140deg) brightness(102%) contrast(101%);
@@ -34,7 +38,7 @@
                 <ul>
                     @if (!_userService.CheckLoggedIn())
                     {
-                        <li class="tm-nav-item @((string)ViewData["Title"] == "Login" ? "active" : "")">
+                        <li class="tm-nav-item @(title == "Login" ? "active" : "")">
                             <a asp-action="login" asp-controller="auth" class="tm-nav-link">
                                 <img src="~/img/login.svg"
                                      alt=""
@@ -42,7 +46,7 @@
                                 Login
                             </a>
                         </li>
-                        <li class="tm-nav-item @((string)ViewData["Title"] == "Register" ? "active" : "")">
+                        <li class="tm-nav-item @(title == "Register" ? "active" : "")">
                             <a asp-action="register" asp-controller="auth" class="tm-nav-link">
                                 <img src="~/img/register.svg"
                                      alt=""
@@ -51,7 +55,7 @@
                             </a>
                         </li>
                     }
-                    <li class="tm-nav-item @((string)ViewData["Title"] == "Home" ? "active" : "")">
+                    <li class="tm-nav-item @(title == "Home" ? "active" : "")">
                         <a asp-action="index" asp-controller="blog" class="tm-nav-link">
                             <i class="fas fa-home"></i>
                             Home
@@ -59,20 +63,28 @@
                     </li>
                     @if (_userService.CheckLoggedIn())
                     {
-                        <li class="tm-nav-item @((string)ViewData["Title"] == "Create Blog" ? "active" : "")">
+                        <li class="tm-nav-item @(isMyBlogs ? "active" : "")">
+                            <a asp-action="myblogs" asp-controller="blog" class="tm-nav-link">
+                                <img src="~/img/login.svg"
+                                     alt=""
+                                     style="width: 20px; height: 20px; margin-right: 37px" />
+                                My Blogs
+                            </a>
+                        </li>
+                        <li class="tm-nav-item @(title == "Create Blog" ? "active" : "")">
                             <a asp-action="create" asp-controller="blog" class="tm-nav-link ">
                                 <i class="fas fa-pen"></i>
                                 Create Blog
                             </a>
                         </li>
                     }
-                    <li class="tm-nav-item  @((string)ViewData["Title"] == "About Us" ? "active" : "")">
+                    <li class="tm-nav-item  @(title == "About Us" ? "active" : "")">
                         <a asp-action="index" asp-controller="about" class="tm-nav-link">
                             <i class="fas fa-users"></i>
                             About Xtra
                         </a>
                     </li>
-                    <li class="tm-nav-item @((string)ViewData["Title"] == "Contact Us" ? "active" : "")">
+                    <li class="tm-nav-item @(title == "Contact Us" ? "active" : "")">
                         <a asp-action="index" asp-controller="contact" class="tm-nav-link ">
                             <i class="far fa-comments"></i>
                             Contact Us
