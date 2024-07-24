@@ -99,6 +99,7 @@ public class AuthController : Controller
         var user = await _userManager.FindByEmailAsync(registerVM.Email);
         var token = await _userManager.GenerateEmailConfirmationTokenAsync(user!);
         var confirmationLink = Url.Action(nameof(ConfirmEmail), "Auth", new { userId = user!.Id, token });
+        Console.WriteLine(confirmationLink);
         await _emailSender.SendEmailAsync(registerVM.Email, "Confirm your email", confirmationLink!);
 
         return RedirectToAction(nameof(Login));

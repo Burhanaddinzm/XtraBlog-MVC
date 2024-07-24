@@ -6,7 +6,14 @@
 <hr class="tm-hr-primary">
 <div style="margin-bottom:30px">
     <p style="font-size: 20px;">Current Image</p>
-    <img src="~/img/@Model.ImageUrl" style="width:400px;height:400px;object-fit:cover" />
+    @if (Model.ImageUrl == null)
+    {
+        <h2 class="text-warning">Not Found!</h2>
+    }
+    else
+    {
+        <img src="~/img/@Model.ImageUrl" style="width:400px;height:400px;object-fit:cover" />
+    }
 </div>
 <form asp-action="update" asp-controller="blog" method="post" enctype="multipart/form-data">
     <div style="

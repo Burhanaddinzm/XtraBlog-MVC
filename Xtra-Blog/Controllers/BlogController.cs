@@ -1,11 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using XtraBlog.Extensions.File;
-using XtraBlog.Models;
 using XtraBlog.Services.Interfaces;
 using XtraBlog.ViewModels.Blog;
 
 namespace XtraBlog.Controllers;
-
+[Authorize]
 public class BlogController : Controller
 {
     private readonly IBlogService _blogService;
@@ -21,10 +21,16 @@ public class BlogController : Controller
         _userService = userService;
         _tagService = tagService;
     }
-
+    [AllowAnonymous]
     [HttpGet]
     public async Task<IActionResult> Index()
     {
+        if (_userService.CheckLoggedIn())
+        {
+            var user = await _userService.FindCurrentUserAsync();
+            ViewBag.UserId = user.Id;
+        }
+
         var blogs = await _blogService.GetAllBlogsAsync();
 
         return View(blogs);
@@ -50,6 +56,7 @@ public class BlogController : Controller
         }
     }
 
+    [AllowAnonymous]
     [HttpGet]
     public async Task<IActionResult> Detail(int? id)
     {
@@ -212,6 +219,44 @@ public class BlogController : Controller
     [HttpPost]
     public async Task<IActionResult> Delete(int? id)
     {
-        return RedirectToAction(nameof(Index));
+        if (id == null || id <= 0)
+        {
+            return BadRequest("Invalid id!");
+        }
+
+        var blog = await _blogService.GetBlogAsync(id.Value);
+
+        if (blog == null)
+        {
+            return NotFound("Blog not found!");
+        }
+
+        try
+        {
+            var currentUser = await _userService.FindCurrentUserAsync();
+
+            if (currentUser != blog.User)
+            {
+                return Unauthorized();
+            }
+        }
+        catch (ArgumentException ex)
+        {
+            return BadRequest(ex.Message);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+        }
+
+        await _blogService.DeleteBlogAsync(blog);
+
+        var referrerUrl = Request.Headers["Referer"].ToString();
+        if (!string.IsNullOrEmpty(referrerUrl))
+        {
+            return Redirect(referrerUrl);
+        }
+
+        return RedirectToAction("Index");
     }
 }

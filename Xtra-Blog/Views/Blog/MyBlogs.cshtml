@@ -10,7 +10,13 @@
     {
         <article class="col-12 col-md-6 tm-post">
             <hr class="tm-hr-primary">
-            <a asp-action="detail" asp-controller="blog" asp-route-id="@blog.Id" class="effect-lily tm-post-link tm-pt-60">
+            <div class="d-flex justify-content-between w-100 mt-3">
+                <a asp-action="update" asp-controller="blog" asp-route-id="@blog.Id" class="btn btn-primary">Update</a>
+                <form asp-action="delete" asp-controller="blog" asp-route-id="@blog.Id" method="post">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+            <a asp-action="detail" asp-controller="blog" asp-route-id="@blog.Id" class="effect-lily tm-post-link tm-pt-30">
                 <div class="tm-post-link-inner">
                     @if (blog.ImageUrl != null)
                     {

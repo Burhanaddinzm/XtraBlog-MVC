@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Reflection.Metadata;
 using XtraBlog.Data;
 using XtraBlog.Extensions.File;
 using XtraBlog.Models;
@@ -102,5 +101,12 @@ public class BlogManager : IBlogService
         }
 
         return existingBlog != null;
+    }
+
+    public async Task DeleteBlogAsync(Blog blog)
+    {
+        blog.IsDeleted = true;
+        _context.Blogs.Update(blog);
+        await _context.SaveChangesAsync();
     }
 }

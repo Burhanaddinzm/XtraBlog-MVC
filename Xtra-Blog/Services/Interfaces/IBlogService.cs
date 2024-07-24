@@ -19,4 +19,5 @@ public interface IBlogService
     /// <exception cref="UnauthorizedAccessException"></exception>
     /// <exception cref="Exception"></exception>
     Task UpdateBlogAsync(UpdateBlogVM blogVM, AppUser user);
+    Task DeleteBlogAsync(Blog blog);
 }
