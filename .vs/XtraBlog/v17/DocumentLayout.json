@@ -1,37 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\Burhanaddin\\source\\repos\\Xtra-Blog\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{81EAC66A-D548-4F81-9E3F-27244FF9D220}|Xtra-Blog\\XtraBlog.csproj|c:\\users\\burhanaddin\\source\\repos\\xtra-blog\\xtra-blog\\models\\tag.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{81EAC66A-D548-4F81-9E3F-27244FF9D220}|Xtra-Blog\\XtraBlog.csproj|solutionrelative:xtra-blog\\models\\tag.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Tag.cs",
-              "DocumentMoniker": "C:\\Users\\Burhanaddin\\source\\repos\\Xtra-Blog\\Xtra-Blog\\Models\\Tag.cs",
-              "RelativeDocumentMoniker": "Xtra-Blog\\Models\\Tag.cs",
-              "ToolTip": "C:\\Users\\Burhanaddin\\source\\repos\\Xtra-Blog\\Xtra-Blog\\Models\\Tag.cs",
-              "RelativeToolTip": "Xtra-Blog\\Models\\Tag.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-24T09:19:10.604Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
+      "DocumentGroups": []
     }
   ]
 }

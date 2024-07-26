@@ -10,7 +10,7 @@
     {
         <article class="col-12 col-md-6 tm-post">
             <hr class="tm-hr-primary">
-            @if (blog.UserId == ViewBag.UserId)
+            @if (blog.UserId == ViewBag.UserId || ViewBag.UserName == "Admin")
             {
                 <div class="d-flex justify-content-between w-100 mt-3">
                     <a asp-action="update" asp-controller="blog" asp-route-id="@blog.Id" class="btn btn-primary">Update</a>

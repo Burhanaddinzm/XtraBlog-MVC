@@ -29,6 +29,7 @@ public class BlogController : Controller
         {
             var user = await _userService.FindCurrentUserAsync();
             ViewBag.UserId = user.Id;
+            ViewBag.UserName = user.UserName;
         }
 
         var blogs = await _blogService.GetAllBlogsAsync();
@@ -145,7 +146,7 @@ public class BlogController : Controller
         {
             var currentUser = await _userService.FindCurrentUserAsync();
 
-            if (currentUser != blog.User)
+            if (currentUser != blog.User && currentUser.UserName != "Admin")
             {
                 return Unauthorized();
             }
@@ -165,7 +166,10 @@ public class BlogController : Controller
             Title = blog.Title,
             Content = blog.Content,
             ImageUrl = blog.ImageUrl,
+            SelectedTags = blog.BlogTags.Select(bt => bt.TagId).ToList()
         };
+
+        ViewBag.Tags = await _tagService.GetAllTagsAsync();
 
         return View(blogVm);
     }
@@ -173,6 +177,8 @@ public class BlogController : Controller
     [HttpPost]
     public async Task<IActionResult> Update(UpdateBlogVM blogVM)
     {
+        ViewBag.Tags = await _tagService.GetAllTagsAsync();
+
         if (!ModelState.IsValid)
         {
             return View(blogVM);
@@ -235,7 +241,7 @@ public class BlogController : Controller
         {
             var currentUser = await _userService.FindCurrentUserAsync();
 
-            if (currentUser != blog.User)
+            if (currentUser != blog.User && currentUser.UserName != "Admin")
             {
                 return Unauthorized();
             }

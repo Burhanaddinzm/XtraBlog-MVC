@@ -8,5 +8,5 @@ public class CreateBlogVM
     public string Content { get; set; } = null!;
     [DisplayName("Blog Image")]
     public IFormFile? Image { get; set; }
-    public List<int>? SelectedTags { get; set; }
+    public List<int> SelectedTags { get; set; } = new List<int>();
 }

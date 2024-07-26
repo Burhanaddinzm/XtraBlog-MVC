@@ -10,4 +10,5 @@ public class UpdateBlogVM
     [DisplayName("Blog Image")]
     public IFormFile? Image { get; set; }
     public string? ImageUrl { get; set; }
+    public List<int> SelectedTags { get; set; } = new List<int>();
 }

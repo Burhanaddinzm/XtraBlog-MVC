@@ -51,8 +51,34 @@
         <span asp-validation-for="Image" class="text-danger"></span>
     </div>
 
+    <div style="
+              display: flex;
+              align-items: start;
+              flex-direction: column;
+              margin-bottom: 30px;
+            ">
+        <label for="select" class="tm-color-primary" style="font-size: 20px; cursor: pointer">Tags</label>
+        <select id="select" asp-for="SelectedTags" class="form-control" multiple="multiple">
+            @foreach (var tag in ViewBag.Tags)
+            {
+                if (Model.SelectedTags.Contains(tag.Id))
+                {
+                    <option value="@tag.Id" selected>
+                        @tag.Name
+                    </option>
+                }
+                else
+                {
+                    <option value="@tag.Id">
+                        @tag.Name
+                    </option>
+                }
+            }
+        </select>
+    </div>
+
     <button type="submit" class="tm-btn tm-btn-primary tm-btn-small" style="margin-bottom: 30px">
-        Create Blog
+        Update Blog
     </button>
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 </form>

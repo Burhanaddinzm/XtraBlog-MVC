@@ -34,7 +34,9 @@ public class BlogManager : IBlogService
 
     public async Task<Blog?> GetBlogAsync(int id)
     {
-        return await _context.Blogs.FindAsync(id);
+        return await _context.Blogs.Include("User")
+                                   .Include("BlogTags.Tag")
+                                   .FirstOrDefaultAsync(x => x.Id == id);
     }
 
     public async Task CreateBlogAsync(CreateBlogVM blogVM, AppUser user)
@@ -52,30 +54,50 @@ public class BlogManager : IBlogService
             blog.ImageUrl = fileName;
         }
 
+        if (blogVM.SelectedTags.Count > 0)
+        {
+            foreach (var tagId in blogVM.SelectedTags)
+            {
+                blog.BlogTags.Add(new BlogTag { TagId = tagId });
+            }
+        }
+
         await _context.Blogs.AddAsync(blog);
         await _context.SaveChangesAsync();
     }
 
     public async Task UpdateBlogAsync(UpdateBlogVM blogVM, AppUser user)
     {
-        var existingBlog = await _context.Blogs.FindAsync(blogVM.Id);
+        var existingBlog = await _context.Blogs.Include(b => b.User)
+                                               .Include("BlogTags.Tag")
+                                               .FirstOrDefaultAsync(b => b.Id == blogVM.Id && !b.IsDeleted);
 
         if (existingBlog == null)
         {
             throw new Exception("Blog doesn't exist!");
         }
 
-        if (existingBlog.User != user)
+        if (existingBlog.User != user && user.UserName != "Admin")
         {
-            throw new UnauthorizedAccessException("Only author of the blog can update it!");
+            throw new UnauthorizedAccessException("Only the author of the blog can update it!");
         }
 
         existingBlog.Title = blogVM.Title;
         existingBlog.Content = blogVM.Content;
+
         if (blogVM.Image != null)
         {
             var fileName = await blogVM.Image.SaveFileAsync(_env.WebRootPath, "img");
             existingBlog.ImageUrl = fileName;
+        }
+
+        existingBlog.BlogTags.Clear();
+        if (blogVM.SelectedTags.Count > 0)
+        {
+            foreach (var tagId in blogVM.SelectedTags)
+            {
+                existingBlog.BlogTags.Add(new BlogTag { TagId = tagId });
+            }
         }
 
         _context.Blogs.Update(existingBlog);

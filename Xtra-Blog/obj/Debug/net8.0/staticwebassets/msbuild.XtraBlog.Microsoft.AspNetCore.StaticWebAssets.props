@@ -320,6 +320,22 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\img\2b0585aa-a5dc-4d98-98d3-61b47c3adff4_Screenshot 2024-07-05 155837.png))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\img\66eaa6fc-9e46-40a0-99f2-3362bc0dd6eb_Screenshot 2024-07-19 011113.png))">
+      <SourceType>Package</SourceType>
+      <SourceId>XtraBlog</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/XtraBlog</BasePath>
+      <RelativePath>img/66eaa6fc-9e46-40a0-99f2-3362bc0dd6eb_Screenshot 2024-07-19 011113.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\img\66eaa6fc-9e46-40a0-99f2-3362bc0dd6eb_Screenshot 2024-07-19 011113.png))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\img\8cef45ab-570d-411f-b55b-52fc4c4e5fab_Screenshot 2024-07-05 155837.png))">
       <SourceType>Package</SourceType>
       <SourceId>XtraBlog</SourceId>
