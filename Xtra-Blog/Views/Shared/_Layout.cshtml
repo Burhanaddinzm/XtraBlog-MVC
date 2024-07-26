@@ -77,6 +77,12 @@
                                 Create Blog
                             </a>
                         </li>
+                        <li class="tm-nav-item @(title == "Create Tag" ? "active" : "")">
+                            <a asp-action="create" asp-controller="tag" class="tm-nav-link ">
+                                <strong>#T</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                Create Tag
+                            </a>
+                        </li>
                     }
                     <li class="tm-nav-item  @(title == "About Us" ? "active" : "")">
                         <a asp-action="index" asp-controller="about" class="tm-nav-link">
