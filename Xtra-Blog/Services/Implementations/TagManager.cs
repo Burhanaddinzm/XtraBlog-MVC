@@ -15,12 +15,14 @@ public class TagManager : ITagService
         _context = context;
     }
 
-    public async Task<List<Tag>> GetAllTagsAsync()
+    public async Task<List<Tag>> GetAllTagsAsync(AppUser? user)
     {
-        return await _context.Tags.ToListAsync();
+        return user != null
+               ? await _context.Tags.Where(x => x.UserId == user.Id).ToListAsync()
+               : await _context.Tags.ToListAsync();
     }
 
-    public async Task<bool> CheckDuplicateAsync(string tagName, int? tagId = null)
+    public async Task<bool> CheckDuplicateAsync(string tagName, string userId, int? tagId = null)
     {
         Tag? existingTag;
 
@@ -28,22 +30,24 @@ public class TagManager : ITagService
         {
             existingTag = await _context.Tags.FirstOrDefaultAsync(
                 x => x.Name.Trim().ToLower() == tagName.Trim().ToLower() &&
-                x.Id != tagId
+                x.Id != tagId &&
+                x.UserId == userId
                 );
         }
         else
         {
             existingTag = await _context.Tags.FirstOrDefaultAsync(
-                x => x.Name.Trim().ToLower() == tagName.Trim().ToLower()
+                x => x.Name.Trim().ToLower() == tagName.Trim().ToLower() &&
+                x.UserId == userId
                 );
         }
 
         return existingTag != null;
     }
 
-    public async Task CreateTagAsync(CreateTagVM tagVM)
+    public async Task CreateTagAsync(CreateTagVM tagVM, AppUser user)
     {
-        await _context.Tags.AddAsync(new Tag { Name = tagVM.Name });
+        await _context.Tags.AddAsync(new Tag { Name = tagVM.Name, UserId = user.Id });
         await _context.SaveChangesAsync();
     }
 

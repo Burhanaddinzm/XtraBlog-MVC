@@ -47,7 +47,7 @@
               margin-bottom: 30px;
             ">
         <label for="select" class="tm-color-primary" style="font-size: 20px; cursor: pointer">Tags</label>
-        <select id="select" asp-for="SelectedTags" class="form-control" multiple="multiple">
+        <select id="select" asp-for="SelectedTags" class="form-control" multiple="multiple" style="width:60%">
             @foreach (var tag in ViewBag.Tags)
             {
                 <option value="@tag.Id">@tag.Name</option>

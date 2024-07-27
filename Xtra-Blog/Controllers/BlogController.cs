@@ -40,21 +40,10 @@ public class BlogController : Controller
     [HttpGet]
     public async Task<IActionResult> MyBlogs()
     {
-        try
-        {
-            var user = await _userService.FindCurrentUserAsync();
-            var blogs = await _blogService.GetAllBlogsAsync(user.UserName);
+        var user = await _userService.FindCurrentUserAsync();
+        var blogs = await _blogService.GetAllBlogsAsync(user.UserName);
 
-            return View(blogs);
-        }
-        catch (ArgumentException ex)
-        {
-            return BadRequest(ex.Message);
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
-        }
+        return View(blogs);
     }
 
     [AllowAnonymous]
@@ -79,14 +68,16 @@ public class BlogController : Controller
     [HttpGet]
     public async Task<IActionResult> Create()
     {
-        ViewBag.Tags = await _tagService.GetAllTagsAsync();
+        var user = await _userService.FindCurrentUserAsync();
+        ViewBag.Tags = await _tagService.GetAllTagsAsync(user);
         return View();
     }
 
     [HttpPost]
     public async Task<IActionResult> Create(CreateBlogVM blogVM)
     {
-        ViewBag.Tags = await _tagService.GetAllTagsAsync();
+        var user = await _userService.FindCurrentUserAsync();
+        ViewBag.Tags = await _tagService.GetAllTagsAsync(user);
 
         if (!ModelState.IsValid)
         {
@@ -110,19 +101,7 @@ public class BlogController : Controller
             }
         }
 
-        try
-        {
-            var user = await _userService.FindCurrentUserAsync();
-            await _blogService.CreateBlogAsync(blogVM, user);
-        }
-        catch (ArgumentException ex)
-        {
-            return BadRequest(ex.Message);
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
-        }
+        await _blogService.CreateBlogAsync(blogVM, user);
 
         return RedirectToAction(nameof(Index));
     }
@@ -142,22 +121,11 @@ public class BlogController : Controller
             return NotFound("Blog not found!");
         }
 
-        try
-        {
-            var currentUser = await _userService.FindCurrentUserAsync();
+        var currentUser = await _userService.FindCurrentUserAsync();
 
-            if (currentUser != blog.User && currentUser.UserName != "Admin")
-            {
-                return Unauthorized();
-            }
-        }
-        catch (ArgumentException ex)
+        if (currentUser != blog.User && currentUser.UserName != "Admin")
         {
-            return BadRequest(ex.Message);
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            return Unauthorized();
         }
 
         var blogVm = new UpdateBlogVM
@@ -169,7 +137,8 @@ public class BlogController : Controller
             SelectedTags = blog.BlogTags.Select(bt => bt.TagId).ToList()
         };
 
-        ViewBag.Tags = await _tagService.GetAllTagsAsync();
+        var user = await _userService.FindCurrentUserAsync();
+        ViewBag.Tags = await _tagService.GetAllTagsAsync(user);
 
         return View(blogVm);
     }
@@ -177,7 +146,8 @@ public class BlogController : Controller
     [HttpPost]
     public async Task<IActionResult> Update(UpdateBlogVM blogVM)
     {
-        ViewBag.Tags = await _tagService.GetAllTagsAsync();
+        var user = await _userService.FindCurrentUserAsync();
+        ViewBag.Tags = await _tagService.GetAllTagsAsync(user);
 
         if (!ModelState.IsValid)
         {
@@ -201,23 +171,7 @@ public class BlogController : Controller
             }
         }
 
-        try
-        {
-            var user = await _userService.FindCurrentUserAsync();
-            await _blogService.UpdateBlogAsync(blogVM, user);
-        }
-        catch (ArgumentException ex)
-        {
-            return BadRequest(ex.Message);
-        }
-        catch (UnauthorizedAccessException ex)
-        {
-            return Unauthorized(ex.Message);
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
-        }
+        await _blogService.UpdateBlogAsync(blogVM, user);
 
         return RedirectToAction(nameof(Index));
     }
@@ -237,22 +191,11 @@ public class BlogController : Controller
             return NotFound("Blog not found!");
         }
 
-        try
-        {
-            var currentUser = await _userService.FindCurrentUserAsync();
+        var currentUser = await _userService.FindCurrentUserAsync();
 
-            if (currentUser != blog.User && currentUser.UserName != "Admin")
-            {
-                return Unauthorized();
-            }
-        }
-        catch (ArgumentException ex)
+        if (currentUser != blog.User && currentUser.UserName != "Admin")
         {
-            return BadRequest(ex.Message);
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            return Unauthorized();
         }
 
         await _blogService.DeleteBlogAsync(blog);
