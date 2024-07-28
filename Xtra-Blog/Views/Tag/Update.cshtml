@@ -1,16 +1,14 @@
 ﻿@{
-    ViewData["Title"] = "Manage Tags";
+    ViewData["Title"] = "Update Tag";
 }
 @model UpdateTagVM
 
 <hr class="tm-hr-primary">
-<h1 class="tm-color-primary">Create New</h1>
-<form asp-action="create" asp-controller="tag" method="post" id="tagform">
+<h1 class="tm-color-primary">Update Tag</h1>
+<form asp-action="update" asp-controller="tag" asp-route-id="@Model.Id" method="post" id="tagform">
     <label class="tm-color-primary" for="name" style="cursor:pointer">Name</label>
     <input class="form-control" id="name" asp-for="Name" style="width: 60%" />
     <span asp-validation-for="Name" class="text-danger"></span>
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 </form>
-<button class="tm-btn tm-btn-primary tm-btn-small" type="submit" style="margin-top: 30px" form="tagform">Create Tag</button>
-
-@await Component.InvokeAsync("Tag")
+<button class="tm-btn tm-btn-primary tm-btn-small" type="submit" style="margin-top: 30px" form="tagform">Update Tag</button>

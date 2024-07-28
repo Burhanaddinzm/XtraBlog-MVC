@@ -10,10 +10,6 @@ var builder = WebApplication.CreateBuilder(args);
 {
     builder.Services.AddControllersWithViews();
     builder.Services.AddHttpContextAccessor();
-    builder.Services.ConfigureApplicationCookie(cookieAuthOptions =>
-    {
-        cookieAuthOptions.LoginPath = "/auth/login";
-    });
 
     builder.Services.AddDbContext<AppDbContext>(optionsBuilder =>
     {
@@ -34,6 +30,13 @@ var builder = WebApplication.CreateBuilder(args);
         options.Lockout.MaxFailedAccessAttempts = 5;
         options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
     }).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
+
+    builder.Services.ConfigureApplicationCookie(cookieAuthOptions =>
+    {
+        cookieAuthOptions.LoginPath = "/Auth/Login";
+        cookieAuthOptions.LogoutPath = "/Auth/Logout";
+        cookieAuthOptions.AccessDeniedPath = "/Auth/AccessDenied";
+    });
 
     builder.Services.AddScoped<IBlogService, BlogManager>();
     builder.Services.AddScoped<IUserService, UserService>();

@@ -5,7 +5,6 @@ using XtraBlog.Services.Interfaces;
 using XtraBlog.ViewModels.Auth;
 
 namespace XtraBlog.Controllers;
-
 public class AuthController : Controller
 {
     private readonly UserManager<AppUser> _userManager;
@@ -133,5 +132,11 @@ public class AuthController : Controller
         }
 
         return RedirectToAction("Index", "Blog");
+    }
+
+    [HttpGet]
+    public IActionResult AccessDenied()
+    {
+        return Forbid();
     }
 }

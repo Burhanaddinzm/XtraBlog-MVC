@@ -68,9 +68,9 @@ public class BlogManager : IBlogService
 
     public async Task UpdateBlogAsync(UpdateBlogVM blogVM, AppUser user)
     {
-        var existingBlog = await _context.Blogs.Include(b => b.User)
+        var existingBlog = await _context.Blogs.Include(x => x.User)
                                                .Include("BlogTags.Tag")
-                                               .FirstOrDefaultAsync(b => b.Id == blogVM.Id && !b.IsDeleted);
+                                               .FirstOrDefaultAsync(x => x.Id == blogVM.Id);
 
         if (existingBlog == null)
         {
