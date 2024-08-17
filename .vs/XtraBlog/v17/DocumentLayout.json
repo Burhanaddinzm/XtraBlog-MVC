@@ -1,12 +1,70 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\Burhanaddin\\source\\repos\\Xtra-Blog\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{81EAC66A-D548-4F81-9E3F-27244FF9D220}|Xtra-Blog\\XtraBlog.csproj|c:\\users\\burhanaddin\\source\\repos\\xtra-blog\\xtra-blog\\models\\comment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{81EAC66A-D548-4F81-9E3F-27244FF9D220}|Xtra-Blog\\XtraBlog.csproj|solutionrelative:xtra-blog\\models\\comment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{81EAC66A-D548-4F81-9E3F-27244FF9D220}|Xtra-Blog\\XtraBlog.csproj|c:\\users\\burhanaddin\\source\\repos\\xtra-blog\\xtra-blog\\views\\blog\\detail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{81EAC66A-D548-4F81-9E3F-27244FF9D220}|Xtra-Blog\\XtraBlog.csproj|solutionrelative:xtra-blog\\views\\blog\\detail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{81EAC66A-D548-4F81-9E3F-27244FF9D220}|Xtra-Blog\\XtraBlog.csproj|c:\\users\\burhanaddin\\source\\repos\\xtra-blog\\xtra-blog\\models\\blog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{81EAC66A-D548-4F81-9E3F-27244FF9D220}|Xtra-Blog\\XtraBlog.csproj|solutionrelative:xtra-blog\\models\\blog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Blog.cs",
+              "DocumentMoniker": "C:\\Users\\Burhanaddin\\source\\repos\\Xtra-Blog\\Xtra-Blog\\Models\\Blog.cs",
+              "RelativeDocumentMoniker": "Xtra-Blog\\Models\\Blog.cs",
+              "ToolTip": "C:\\Users\\Burhanaddin\\source\\repos\\Xtra-Blog\\Xtra-Blog\\Models\\Blog.cs",
+              "RelativeToolTip": "Xtra-Blog\\Models\\Blog.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAABJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-17T11:46:44.711Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Comment.cs",
+              "DocumentMoniker": "C:\\Users\\Burhanaddin\\source\\repos\\Xtra-Blog\\Xtra-Blog\\Models\\Comment.cs",
+              "RelativeDocumentMoniker": "Xtra-Blog\\Models\\Comment.cs",
+              "ToolTip": "C:\\Users\\Burhanaddin\\source\\repos\\Xtra-Blog\\Xtra-Blog\\Models\\Comment.cs",
+              "RelativeToolTip": "Xtra-Blog\\Models\\Comment.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-17T11:46:11.405Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Detail.cshtml",
+              "DocumentMoniker": "C:\\Users\\Burhanaddin\\source\\repos\\Xtra-Blog\\Xtra-Blog\\Views\\Blog\\Detail.cshtml",
+              "RelativeDocumentMoniker": "Xtra-Blog\\Views\\Blog\\Detail.cshtml",
+              "ToolTip": "C:\\Users\\Burhanaddin\\source\\repos\\Xtra-Blog\\Xtra-Blog\\Views\\Blog\\Detail.cshtml",
+              "RelativeToolTip": "Xtra-Blog\\Views\\Blog\\Detail.cshtml",
+              "ViewState": "AQIAACcAAAAAAAAAAAAAACcAAABVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-17T10:06:05.901Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }

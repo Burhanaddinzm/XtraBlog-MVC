@@ -1,0 +1,88 @@
+﻿@{
+    ViewData["Title"] = Model.Title;
+}
+@model Blog
+
+<div class="row tm-row">
+    <div class="col-12">
+        <hr class="tm-hr-primary tm-mb-55">
+        @if (Model.ImageUrl != null)
+        {
+            <img src="~/img/@Model.ImageUrl" style="width:100%; object-fit:cover" />
+        }
+    </div>
+</div>
+<div class="row tm-row">
+    <div class="col-lg-8 tm-post-col">
+        <div class="tm-post-full">
+            <div class="mb-4">
+                <h2 class="pt-2 tm-color-primary tm-post-title">@Model.Title</h2>
+                <p class="tm-mb-40">@Model.CreatedAt posted by @Model.CreatedBy</p>
+                <p>
+                    @Model.Content
+                </p>
+                <span class="d-block text-right tm-color-primary">
+                    @foreach (var blogTag in Model.BlogTags)
+                    {
+                        @('#' + blogTag.Tag.Name + " ")
+                    }
+                </span>
+            </div>
+
+            <!-- Comments -->
+            <div>
+                <h2 class="tm-color-primary tm-post-title">Comments</h2>
+                <hr class="tm-hr-primary tm-mb-45">
+                @if (Model.Comments.Count == 0)
+                {
+                    <p class="text-monospace text-secondary">Whoa, it's a total wasteland here! Did someone drop the big one?</p>
+                }
+                @foreach (var comment in Model.Comments.Where(x => x.Parent == null))
+                {
+                    <div class="tm-comment tm-mb-45">
+                        <figure class="tm-comment-figure">
+                            <figcaption class="tm-color-primary text-center">@comment.CreatedBy</figcaption>
+                        </figure>
+                        <div>
+                            <p>
+                                @comment.Content
+                            </p>
+                            <div class="d-flex justify-content-between">
+                                <a href="#" class="tm-color-primary">REPLY</a>
+                                <span class="tm-color-primary">@comment.CreatedAt</span>
+                            </div>
+                        </div>
+                    </div>
+                    if (comment.Children.Count > 0)
+                    {
+                        @foreach (var reply in comment.Children)
+                        {
+                            <div class="tm-comment-reply tm-mb-45">
+                                <hr>
+                                <div class="tm-comment">
+                                    <figure class="tm-comment-figure">
+                                        <figcaption class="tm-color-primary text-center">@reply.CreatedBy</figcaption>
+                                    </figure>
+                                    <p>
+                                        @reply.Content
+                                    </p>
+                                </div>
+                                <span class="d-block text-right tm-color-primary">@reply.CreatedAt</span>
+                            </div>
+                        }
+                    }
+                }
+                <form action="" class="mb-5 tm-comment-form">
+                    <h2 class="tm-color-primary tm-post-title mb-4">Your comment</h2>
+                    @Html.Hidden("To", " ")
+                    <div class="mb-4">
+                        <textarea class="form-control" name="message" rows="6" style="min-height:180px"></textarea>
+                    </div>
+                    <div class="text-right">
+                        <button class="tm-btn tm-btn-primary tm-btn-small">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

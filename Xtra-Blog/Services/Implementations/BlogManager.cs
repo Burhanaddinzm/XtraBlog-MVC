@@ -36,6 +36,8 @@ public class BlogManager : IBlogService
     {
         return await _context.Blogs.Include("User")
                                    .Include("BlogTags.Tag")
+                                   .Include("Comments.Parent")
+                                   .Include("Comments.Children")
                                    .FirstOrDefaultAsync(x => x.Id == id);
     }
 
@@ -66,6 +68,14 @@ public class BlogManager : IBlogService
         await _context.SaveChangesAsync();
     }
 
+    /// <summary>
+    /// Updates <see cref="Blog"/> with the id of <see cref="UpdateBlogVM.Id"/>. Replaces old values with the values provided by the blogVM.
+    /// </summary>
+    /// <param name="blogVM"></param>
+    /// <param name="user"></param>
+    /// <returns></returns>
+    /// <exception cref="UnauthorizedAccessException"></exception>
+    /// <exception cref="Exception"></exception>
     public async Task UpdateBlogAsync(UpdateBlogVM blogVM, AppUser user)
     {
         var existingBlog = await _context.Blogs.Include(x => x.User)
